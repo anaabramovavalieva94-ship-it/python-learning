@@ -1,0 +1,4 @@
+text = "X-DSPAM-Confidence:    0.8475"
+ipos=text.find(':')
+peice=text[ipos+5:]
+print(float(peice))
