@@ -1,0 +1,21 @@
+import urllib.request, urllib.parse, urllib.error
+import xml.etree.ElementTree as ET
+
+url=input("Enter URL:")
+if len(url)<1:
+    url='https://py4e-data.dr-chuck.net/comments_2457536.xml'
+print('Retrieving', url)
+uh=urllib.request.urlopen(url)
+data=uh.read()
+print('Retrieved',len(data),'characters')
+tree=ET.fromstring(data)
+
+counts=tree.findall('.//count')
+print('User count:', len(counts))
+lst=list()
+for count in counts:
+    print(count.text)
+    lst.append(int(count.text))
+
+print('count:', len(counts))
+print('Sum:', sum(lst))
