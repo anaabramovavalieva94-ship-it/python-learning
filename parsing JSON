@@ -1,0 +1,19 @@
+import urllib.request, urllib.parse
+import json
+
+url=input('Enter location: ')
+if len(url)<1:
+    url="https://py4e-data.dr-chuck.net/comments_2457537.json"
+
+print('Retrieveing', url)
+uh=urllib.request.urlopen(url)
+data=uh.read()
+print('Retrieved', len(data), 'characters')
+
+info=json.loads(data)
+print('User count:', len(info))
+total_sum=0
+for item in info['comments']:
+    total_sum+=item['count']
+
+print('Total sum:', total_sum)
